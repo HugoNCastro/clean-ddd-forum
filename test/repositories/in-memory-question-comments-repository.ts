@@ -4,6 +4,8 @@ import { QuestionComment } from '@/domain/forum/enterprise/entities/question-com
 export class InMemoryQuestionCommentsRepository
   implements QuestionCommentsRepository
 {
+  public items: QuestionComment[] = []
+
   async findById(id: string): Promise<QuestionComment | null> {
     const questionComment = this.items.find((item) => item.id.toString() === id)
 
@@ -21,8 +23,6 @@ export class InMemoryQuestionCommentsRepository
 
     this.items.splice(itemIndex, 1)
   }
-
-  public items: QuestionComment[] = []
 
   async create(questionComment: QuestionComment) {
     this.items.push(questionComment)
